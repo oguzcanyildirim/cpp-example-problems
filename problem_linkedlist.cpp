@@ -8,3 +8,23 @@ and k = 3,
 the solution could be 1 -> 0 -> 5 -> 8 -> 3.208
 */
 
+//Node class represent a node in a LinkedList class, which holds a data and points to the next node
+class Node
+{
+    public:
+        float m_value;
+        Node* next;
+        
+        explicit Node(float value) : m_value{value}
+        {}
+    
+};
+
+class LinkedList
+ {
+     public:
+        Node* m_firstNode;
+        LinkedList (Node firstNode) : m_firstNode{&firstNode}
+        {}
+     
+ };
