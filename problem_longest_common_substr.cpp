@@ -4,7 +4,7 @@ For example, given "epidemiologist", "refrigeration", and "supercalifragilistice
 it should return 5, since the longest common subsequence is "eieio".*/
 #include <string>
 #include <iostream>
-int recursiveLcs(std::string &s1, std::string &s2)
+int recursiveLcs(std::string s1, std::string s2)
 {
     // if at least one of the strings is empty, there is no need to compare
     if(s1.empty() || s2 == "")
@@ -15,7 +15,7 @@ int recursiveLcs(std::string &s1, std::string &s2)
     int commonLength = 0;
     if(s1[0] == s2[0])
     {
-        commonLength = commonLength+ 1;
+        commonLength = commonLength + 1;
     }
     else
     {
@@ -25,6 +25,7 @@ int recursiveLcs(std::string &s1, std::string &s2)
     return commonLength;
 }
 
+
 int main()
 {
     std::string firstString = "epidemiologist";
@@ -32,6 +33,9 @@ int main()
     std::string thirdString = "supercalifragilisticexpialodocious";
 
     std::cout << "Common Length: " << recursiveLcs(firstString, secondString) << std::endl;
+
+    std::cout << "Common Length with an empty string: " 
+    << recursiveLcs(firstString, "") << std::endl;
 
     return 0;
 }
