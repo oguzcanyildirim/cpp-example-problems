@@ -7,7 +7,7 @@ it should return 5, since the longest common subsequence is "eieio".*/
 int recursiveLcs(std::string s1, std::string s2)
 {
     // if at least one of the strings is empty, there is no need to compare
-    if(s1.empty() || s2 == "")
+    if(s1.empty() || s2.empty())
     {
         return 0;
     }
@@ -15,17 +15,23 @@ int recursiveLcs(std::string s1, std::string s2)
     int commonLength = 0;
     if(s1[0] == s2[0])
     {
-        commonLength = commonLength + 1;
+        commonLength = 1 + recursiveLcs(s1.erase(0, 1), s2.erase(0, 1));
     }
     else
     {
-
+        commonLength = std::max( 
+            recursiveLcs(s1.erase(0, 1), s2), 
+            recursiveLcs(s1, s2.erase(0, 1)) );
     }
     
     return commonLength;
 }
 
-
+void commonLengthFindAndPrint(const std::string& s1, const std::string& s2)
+{
+    std::cout << "Common Length between " << s1 << " and " << s2 <<" is: "
+    << recursiveLcs(s1, s2) << std::endl;
+}
 int main()
 {
     std::string firstString = "epidemiologist";
@@ -33,6 +39,9 @@ int main()
     std::string thirdString = "supercalifragilisticexpialodocious";
 
     std::cout << "Common Length: " << recursiveLcs(firstString, secondString) << std::endl;
+    ::commonLengthFindAndPrint(firstString, secondString);
+    ::commonLengthFindAndPrint(secondString, thirdString);
+    ::commonLengthFindAndPrint(firstString, thirdString);
 
     std::cout << "Common Length with an empty string: " 
     << recursiveLcs(firstString, "") << std::endl;
